@@ -57,13 +57,13 @@ export const AppReducer = (state, action) => {
                 ...state,
                 budget
             };
-        case 'SET_BUDGET':
-            action.type = "DONE";
-            state.budget = action.payload;
-
-            return {
-                ...state,
-            };
+            case 'SET_BUDGET':
+                action.type = "DONE";
+                state.budget = action.payload;
+                return {
+                    ...state,
+                };
+                
         case 'CHG_CURRENCY':
             action.type = "DONE";
             state.currency = action.payload;
@@ -104,6 +104,9 @@ export const AppProvider = (props) => {
             return (total = total + item.cost);
         }, 0);
         remaining = state.budget - totalExpenses;
+        if(remaining < 0){
+            alert("you cannot reduce the budget value tha the spending");
+        }
     }
 
     return (
